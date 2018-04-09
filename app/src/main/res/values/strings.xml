@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">UIDemo</string>
+    <string name="tab_text_1">Tin tức</string>
+    <string name="tab_text_2">Video</string>
+    <string name="tab_text_3">Xu hướng</string>
+    <string name="tab_text_4">Cá nhân</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+</resources>
