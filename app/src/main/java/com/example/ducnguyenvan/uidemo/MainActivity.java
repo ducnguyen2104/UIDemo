@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new tabTinTuc();
+                    return tabTinTuc.newInstance();
                 case 1:
-                    return new tabVideo();
+                    return tabVideo.newInstance();
                 case 2:
                     return tabXuHuong.newInstance();
                 case 3:

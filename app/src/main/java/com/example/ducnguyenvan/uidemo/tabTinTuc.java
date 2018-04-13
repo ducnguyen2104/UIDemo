@@ -5,12 +5,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 public class tabTinTuc extends Fragment{
+
+    public static tabTinTuc newInstance() {
+        tabTinTuc fragment = new tabTinTuc();
+        return fragment;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -29,7 +33,6 @@ public class tabTinTuc extends Fragment{
 
         @Override
         public Fragment getItem(int position) {
-            Log.i("Subtab position", ""+ position);
             switch (position) {
                 case 0:
                     return subtabTinNong.newInstance(1);
@@ -49,7 +52,6 @@ public class tabTinTuc extends Fragment{
 
         @Override
         public CharSequence getPageTitle(int position) {
-            Log.i("Subtab title", ""+position);
             switch (position) {
                 case 0:
                     return "Tin nóng";

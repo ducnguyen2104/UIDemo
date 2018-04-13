@@ -2,13 +2,11 @@ package com.example.ducnguyenvan.uidemo;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class subtabBongDaVN extends Fragment {
+public class subtabBongDaVN extends subtab {
 
     public static subtabBongDaVN newInstance(int position) {
         Bundle args = new Bundle();
@@ -16,7 +14,6 @@ public class subtabBongDaVN extends Fragment {
 
         args.putInt("position",position);
         fragment.setArguments(args);
-        Log.i("Subtab", "bong da");
         return fragment;
     }
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+    <ImageView
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/img_view"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:paddingLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/img_view"
+        android:layout_toEndOf="@+id/img_view"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:text="ahihi"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtSource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/img_view"
+        android:layout_toEndOf="@+id/img_view"
+        android:paddingLeft="15dp"
+        android:text="source" />
+
+
+    <TextView
+        android:id="@+id/txtComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/img_view"
+        android:layout_alignParentEnd="true"
+        android:paddingRight="10dp"
+        android:text="cmts" />
+</RelativeLayout>

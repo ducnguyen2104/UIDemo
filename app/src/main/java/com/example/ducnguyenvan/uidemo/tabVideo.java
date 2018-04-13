@@ -11,7 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class tabVideo extends Fragment{
-
+    public static tabVideo newInstance() {
+        tabVideo fragment = new tabVideo();
+        return fragment;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,7 +33,7 @@ public class tabVideo extends Fragment{
 
         @Override
         public Fragment getItem(int position) {
-            Log.i("Subtab position", ""+ position);
+            Log.i("subtab position", ""+ position);
             switch (position) {
                 case 0:
                     return subtabMoi.newInstance(1);
@@ -50,7 +53,7 @@ public class tabVideo extends Fragment{
 
         @Override
         public CharSequence getPageTitle(int position) {
-            Log.i("Subtab title", ""+position);
+            Log.i("subtab title", ""+position);
             switch (position) {
                 case 0:
                     return "Mới";
