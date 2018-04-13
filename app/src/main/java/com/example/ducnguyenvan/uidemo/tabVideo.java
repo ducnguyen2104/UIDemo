@@ -25,7 +25,7 @@ public class tabVideo extends Fragment{
         return rootView;
     }
 
-    private  class SectionsPagerAdapter extends FragmentPagerAdapter {
+    private  class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
