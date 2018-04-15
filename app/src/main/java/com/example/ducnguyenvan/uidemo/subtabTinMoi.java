@@ -58,7 +58,7 @@ public class subtabTinMoi extends subtab {
         listItems.add(new Item1Pic(R.drawable.sven, "Sven from Dota2","Dota2", 0, stringToTimestamp("2018-04-12 01:10:00.000")));
         listItems.add(new Item1Pic(R.drawable.templar, "Lanaya - Templar Assassin from Dota2","Dota2", 10, stringToTimestamp("2018-04-12 11:08:00.000")));
         //listItems.add(new ItemVideo(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.test),"Today is Friday 13th...", "Kênh  14", 5, stringToTimestamp("2018-04-12 11:48:00.000")));
-        MyAdapter myAdapter = new MyAdapter(listItems, getContext());
+        MyAdapter myAdapter = new MyAdapter(listItems, getContext(),recyclerView);
         recyclerView.setAdapter(myAdapter);
     }
 }

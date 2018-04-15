@@ -2,12 +2,14 @@ package com.example.ducnguyenvan.uidemo;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private static final int ITEM_LOADING = 0;
     private static final int ITEM_1_PIC = 1;
     private static final int ITEM_3_PICS = 2;
     private static final int ITEM_VIDEO = 3;
@@ -23,9 +26,34 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     ArrayList<Object> items;
     Context context;
 
-    public MyAdapter(ArrayList<Object> items, Context context) {
+    private int visibleThreshold = 6;
+    private int lastVisibleItem, totalItemCount;
+    private boolean loading;
+    private OnLoadMoreListener onLoadMoreListener;
+
+    public void setOnLoadMoreListener(OnLoadMoreListener mOnLoadMoreListener) {
+       onLoadMoreListener = mOnLoadMoreListener;
+    }
+
+    public MyAdapter(ArrayList<Object> items, Context context, RecyclerView recyclerView) {
         this.items = items;
         this.context = context;
+        final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                totalItemCount = linearLayoutManager.getItemCount();
+                lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+                if (!loading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
+                    if ( onLoadMoreListener != null) {
+                        onLoadMoreListener.onLoadMore();
+                    }
+                    loading = true;
+                }
+            }
+        });
+
     }
 
     @Override
@@ -43,8 +71,13 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         else if(holder instanceof ItemLabelViewHolder) {
             ((ItemLabelViewHolder) holder).bind((ItemLabel)item);
         }
-        else {
+        else if(holder instanceof ItemButtonViewHolder){
             ((ItemButtonViewHolder) holder).bind((ItemButton)item);
+        }
+        else {
+            //((ItemLoadingViewHolder) holder).bind((ItemLoading)item);
+            ItemLoadingViewHolder loadingViewHolder = (ItemLoadingViewHolder) holder;
+            loadingViewHolder.progressBar.setIndeterminate(true);
         }
     }
 
@@ -52,6 +85,10 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        if (viewType == ITEM_LOADING) {
+            View view = layoutInflater.inflate(R.layout.loading_row, parent, false);
+            return new ItemLoadingViewHolder(view);
+        }
         if (viewType == ITEM_1_PIC) {
             View view = layoutInflater.inflate(R.layout.one_pic_row, parent, false);
             return new Item1PicViewHolder(view);
@@ -76,7 +113,10 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if (items.get(position) instanceof Item1Pic) {
+        if (items.get(position) == null) {
+            return ITEM_LOADING;
+        }
+        else if (items.get(position) instanceof Item1Pic) {
             return ITEM_1_PIC;
         }
         else if (items.get(position) instanceof Item3Pics){
@@ -95,7 +135,11 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return items == null ? 0 : items.size();
+    }
+
+    public void setLoaded() {
+        loading = false;
     }
 
     private static class Item1PicViewHolder extends RecyclerView.ViewHolder {
@@ -247,6 +291,14 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         public void bind(ItemButton item) {
             content.setText(item.getContent());
+        }
+    }
+
+    static class ItemLoadingViewHolder extends RecyclerView.ViewHolder {
+        public ProgressBar progressBar;
+        public ItemLoadingViewHolder(View itemView) {
+            super(itemView);
+            progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar1);
         }
     }
 }
