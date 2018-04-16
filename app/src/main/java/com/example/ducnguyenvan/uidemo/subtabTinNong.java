@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 public class subtabTinNong extends subtab {
@@ -103,7 +102,8 @@ public class subtabTinNong extends subtab {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        myAdapter.updateListItems(refreshData(listItems));
+                        ArrayList<MyItem> newList = new ArrayList<>();
+                        myAdapter.updateListItems(refreshData(listItems, newList));
                         //myAdapter.notifyDataSetChanged();
                         swipeRefreshLayout.setRefreshing(false);
                     }
@@ -112,9 +112,16 @@ public class subtabTinNong extends subtab {
         });
     }
 
-    private ArrayList<MyItem> refreshData(ArrayList<MyItem> listItems) {
-        Collections.shuffle(listItems);
-        return listItems;
+    private ArrayList<MyItem> refreshData(ArrayList<MyItem> listItems, ArrayList<MyItem> newList) {
+        //Collections.shuffle(listItems);
+        //return listItems;
+        Random randomGen = new Random();
+        for (int i = 0; i <= listItems.size(); i++) {
+            int itemIndex = randomGen.nextInt(listItems.size());
+            MyItem newItem = listItems.get(itemIndex);
+            newList.add(newItem);
+        }
+        return newList;
     }
 
     private ArrayList<MyItem> loadRandomata(ArrayList<MyItem> listItems, int index) {
