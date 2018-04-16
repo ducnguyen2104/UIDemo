@@ -11,7 +11,8 @@
         android:id="@+id/img_view"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:paddingLeft="10px"/>
+        android:paddingLeft="10px"
+        android:layout_marginLeft="10px"/>
 
     <TextView
         android:id="@+id/txtTitle"
@@ -23,7 +24,8 @@
         android:paddingTop="10px"
         android:text="ahihi"
         android:textSize="25dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginLeft="10px"/>
 
     <TextView
         android:id="@+id/txtSource"
@@ -32,7 +34,8 @@
         android:layout_alignBottom="@+id/img_view"
         android:layout_toEndOf="@+id/img_view"
         android:paddingLeft="10px"
-        android:text="source" />
+        android:text="source"
+        android:layout_marginLeft="10px"/>
 
 
     <TextView
@@ -42,5 +45,6 @@
         android:layout_alignBottom="@+id/img_view"
         android:layout_alignParentEnd="true"
         android:paddingRight="10px"
-        android:text="cmts" />
+        android:text="cmts"
+        android:layout_marginRight="10px"/>
 </RelativeLayout>
