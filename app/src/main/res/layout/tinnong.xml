@@ -4,17 +4,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:paddingRight="0dp"
+    android:paddingLeft="0dp">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".subtabTinMoi">
+            tools:context=".subtabTinMoi"
+            android:paddingRight="0dp"
+            android:paddingLeft="0dp">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+                android:layout_height="match_parent"
+                android:paddingRight="0dp"
+                android:paddingLeft="0dp">
+
+            </android.support.v7.widget.RecyclerView>
 
         </FrameLayout>
 

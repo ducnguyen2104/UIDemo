@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="10dp"
-    android:paddingTop="10dp">
+    android:orientation="horizontal"
+    android:paddingBottom="10px"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="10px">
+
 
     <ImageView
         android:id="@+id/img_view1"
-        android:layout_width="140dp"
-        android:layout_height="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/txtTitle"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:paddingLeft="10px"
+        android:paddingRight="10px"
         android:src="@mipmap/ic_launcher" />
 
     <ImageView
@@ -23,8 +25,7 @@
         android:layout_height="120dp"
         android:layout_alignTop="@+id/img_view1"
         android:layout_toEndOf="@+id/img_view1"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:paddingRight="10px"
         android:src="@mipmap/ic_launcher" />
 
     <ImageView
@@ -33,9 +34,9 @@
         android:layout_height="120dp"
         android:layout_alignTop="@+id/img_view1"
         android:layout_toEndOf="@+id/img_view2"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:paddingRight="10px"
         android:src="@mipmap/ic_launcher" />
+
 
     <TextView
         android:id="@+id/txtTitle"
@@ -43,9 +44,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:paddingLeft="15dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="15dp"
+        android:paddingBottom="10px"
+        android:paddingLeft="10px"
+        android:paddingTop="10px"
         android:text="ahihi"
         android:textSize="25dp"
         android:textStyle="bold" />
@@ -55,8 +56,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/img_view1"
-        android:paddingLeft="15dp"
+        android:layout_below="@+id/img_view2"
+        android:paddingLeft="10px"
+        android:paddingTop="10px"
         android:text="source" />
 
 
@@ -65,7 +67,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/img_view1"
-        android:paddingRight="10dp"
+        android:layout_below="@+id/img_view2"
+        android:paddingRight="10px"
+        android:paddingTop="10px"
         android:text="cmts" />
 </RelativeLayout>

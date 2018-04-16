@@ -4,14 +4,14 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="10dp"
-    android:paddingTop="10dp">
+    android:paddingBottom="10px"
+    android:paddingTop="10px">
     <ImageView
         android:src="@mipmap/ic_launcher"
         android:id="@+id/img_view"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:paddingLeft="10dp"/>
+        android:paddingLeft="10px"/>
 
     <TextView
         android:id="@+id/txtTitle"
@@ -19,8 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/img_view"
         android:layout_toEndOf="@+id/img_view"
-        android:paddingLeft="15dp"
-        android:paddingTop="15dp"
+        android:paddingLeft="10px"
+        android:paddingTop="10px"
         android:text="ahihi"
         android:textSize="25dp"
         android:textStyle="bold" />
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/img_view"
         android:layout_toEndOf="@+id/img_view"
-        android:paddingLeft="15dp"
+        android:paddingLeft="10px"
         android:text="source" />
 
 
@@ -41,6 +41,6 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/img_view"
         android:layout_alignParentEnd="true"
-        android:paddingRight="10dp"
+        android:paddingRight="10px"
         android:text="cmts" />
 </RelativeLayout>

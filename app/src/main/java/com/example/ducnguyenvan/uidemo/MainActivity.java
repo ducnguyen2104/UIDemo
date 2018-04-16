@@ -8,8 +8,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static int scrWidth;
+    public static int scrHeight;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -30,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        MainActivity.this.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        scrHeight = displayMetrics.heightPixels;
+        scrWidth = displayMetrics.widthPixels;
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());

@@ -28,8 +28,14 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int ITEM_VIDEO = 3;
     private static final int ITEM_LABEL = 4;
     private static final int ITEM_BUTTON = 5;
+    private static final int PADDING = 10;
+
+    public static int picWidth = (MainActivity.scrWidth - PADDING*4)/3;
+    public static int picHeight = picWidth*3/4;
     ArrayList<MyItem> items;
     Context context;
+    private int screenWidth;
+    private int screenHeight;
 
     private int visibleThreshold = 6;
     private int lastVisibleItem, totalItemCount;
@@ -63,7 +69,9 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
         Log.i("bind","no payloads");
+
         MyItem item = items.get(position);
         if(holder instanceof Item1PicViewHolder) {
             ((Item1PicViewHolder) holder).bind((Item1Pic)item);
@@ -89,30 +97,10 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
-        Log.i("bind","payloads");
+        Log.i("bind","screen: " + MainActivity.scrWidth + ", img: " + picWidth );
         MyItem item = items.get(position);
         if(payloads.isEmpty()) {
-            Log.i("payload", "empty");
-            if(holder instanceof Item1PicViewHolder) {
-                ((Item1PicViewHolder) holder).bind((Item1Pic)item);
-            }
-            else if(holder instanceof Item3PicsViewHolder) {
-                ((Item3PicsViewHolder) holder).bind((Item3Pics)item);
-            }
-            else if(holder instanceof ItemVideoViewHolder){
-                ((ItemVideoViewHolder) holder).bind((ItemVideo)item);
-            }
-            else if(holder instanceof ItemLabelViewHolder) {
-                ((ItemLabelViewHolder) holder).bind((ItemLabel)item);
-            }
-            else if(holder instanceof ItemButtonViewHolder){
-                ((ItemButtonViewHolder) holder).bind((ItemButton)item);
-            }
-            else {
-                //((ItemLoadingViewHolder) holder).bind((ItemLoading)item);
-                ItemLoadingViewHolder loadingViewHolder = (ItemLoadingViewHolder) holder;
-                loadingViewHolder.progressBar.setIndeterminate(true);
-            }
+            onBindViewHolder(holder,position);
         }
         else {
             Bundle bundle = (Bundle)payloads.get(0);
@@ -193,13 +181,15 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void updateListItems(ArrayList<MyItem> newListItems) {
         final ItemListDiffCallback diffCallback = new ItemListDiffCallback(this.items, newListItems);
         final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
-        //this.items.clear();
-        //this.items.addAll(newListItems);
+        Log.i("thread", "" + Thread.currentThread().getName());
+        if (this.items != newListItems) {
+            this.items.clear();
+            this.items.addAll(newListItems);
+        }
         diffResult.dispatchUpdatesTo(this);
     }
 
     private static class Item1PicViewHolder extends RecyclerView.ViewHolder {
-
         TextView title;
         ImageView img;
         TextView src;
@@ -208,6 +198,9 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             super(itemView);
             title = (TextView)itemView.findViewById(R.id.txtTitle);
             img = (ImageView)itemView.findViewById(R.id.img_view);
+            img.getLayoutParams().height = picHeight;
+            img.getLayoutParams().width = picWidth;
+            img.setPadding(PADDING,0,0,0);
             src = (TextView)itemView.findViewById(R.id.txtSource);
             cmts = (TextView)itemView.findViewById(R.id.txtComments);
         }
@@ -266,8 +259,17 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             super(itemView);
             title = (TextView)itemView.findViewById(R.id.txtTitle);
             img1 = (ImageView)itemView.findViewById(R.id.img_view1);
+            img1.getLayoutParams().height = picHeight;
+            img1.getLayoutParams().width = picWidth;
+            img1.setPadding(PADDING,0,PADDING,0);
             img2 = (ImageView)itemView.findViewById(R.id.img_view2);
+            img2.getLayoutParams().height = picHeight;
+            img2.getLayoutParams().width = picWidth;
+            img2.setPadding(0,0,PADDING,0);
             img3 = (ImageView)itemView.findViewById(R.id.img_view3);
+            img3.getLayoutParams().height = picHeight;
+            img3.getLayoutParams().width = picWidth;
+            img3.setPadding(0,0,PADDING, 0);
             src = (TextView)itemView.findViewById(R.id.txtSource);
             cmts = (TextView)itemView.findViewById(R.id.txtComments);
         }
@@ -411,6 +413,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public ItemLoadingViewHolder(View itemView) {
             super(itemView);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar1);
+            progressBar.getLayoutParams().height = picHeight;
         }
     }
 }

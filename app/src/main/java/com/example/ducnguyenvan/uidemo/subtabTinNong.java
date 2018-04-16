@@ -113,13 +113,15 @@ public class subtabTinNong extends subtab {
     }
 
     private ArrayList<MyItem> refreshData(ArrayList<MyItem> listItems, ArrayList<MyItem> newList) {
-        //Collections.shuffle(listItems);
-        //return listItems;
+        //newList = listItems;
+        //Collections.shuffle(newList);
+        //return newList;
         Random randomGen = new Random();
         for (int i = 0; i <= listItems.size(); i++) {
             int itemIndex = randomGen.nextInt(listItems.size());
             MyItem newItem = listItems.get(itemIndex);
             newList.add(newItem);
+            listItems.remove(itemIndex);
         }
         return newList;
     }
