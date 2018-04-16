@@ -413,7 +413,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public ItemLoadingViewHolder(View itemView) {
             super(itemView);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar1);
-            progressBar.getLayoutParams().height = picHeight;
+            progressBar.getLayoutParams().height = picHeight/2;
         }
     }
 }
