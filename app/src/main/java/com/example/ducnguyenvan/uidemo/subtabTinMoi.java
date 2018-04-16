@@ -45,7 +45,7 @@ public class subtabTinMoi extends subtab {
         recyclerView.setLayoutManager(layoutManager);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), layoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
-        ArrayList<Object> listItems = new ArrayList<>();
+        ArrayList<MyItem> listItems = new ArrayList<>();
         listItems.add(new Item1Pic(R.drawable.antimage, "Antimage from Dota2", "Dota2", 10, stringToTimestamp("2018-04-12 11:10:00.000")));
         listItems.add(new Item1Pic(R.drawable.axe, "Axe from Dota2","Dota2", 69, stringToTimestamp("2018-04-11 11:10:00.000")));
         listItems.add(new Item1Pic(R.drawable.es, "Earthshaker from Dota2", "Dota2", 0, stringToTimestamp("2018-04-12 05:10:00.000")));

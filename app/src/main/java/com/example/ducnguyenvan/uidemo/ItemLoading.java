@@ -1,5 +1,5 @@
 package com.example.ducnguyenvan.uidemo;
 
-public class ItemLoading extends Object {
+public class ItemLoading extends MyItem {
 
 }

@@ -1,18 +1,17 @@
 package com.example.ducnguyenvan.uidemo;
 
-public class ItemLabel extends Object {
-    private String Content;
+public class ItemLabel extends MyItem {
 
-    public String getContent() {
-        return Content;
+    public String getTitle() {
+        return title;
     }
 
-    public void setContent(String content) {
-        Content = content;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public ItemLabel(String content) {
+    public ItemLabel(String title) {
 
-        Content = content;
+        this.title = title;
     }
 }

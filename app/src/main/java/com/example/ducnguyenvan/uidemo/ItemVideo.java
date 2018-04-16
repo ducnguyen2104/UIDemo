@@ -4,10 +4,9 @@ import android.net.Uri;
 
 import java.sql.Timestamp;
 
-public class ItemVideo extends Object {
+public class ItemVideo extends MyItem {
 
     private Uri video;
-    private String title;
     private String source;
     private int comments;
     private Timestamp timestamp;

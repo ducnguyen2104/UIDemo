@@ -46,7 +46,7 @@ public class subtabMoi extends subtab {
         recyclerView.setLayoutManager(layoutManager);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), layoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
-        ArrayList<Object> listItems = new ArrayList<>();
+        ArrayList<MyItem> listItems = new ArrayList<>();
         listItems.add(new ItemVideo(Uri.parse("android.resource://"+getContext().getPackageName()+"/"+R.raw.test),"Today is Friday 13th...", "Kênh  14", 5, stringToTimestamp("2018-04-12 11:48:00.000")));
         MyAdapter myAdapter = new MyAdapter(listItems, getContext(),recyclerView);
         recyclerView.setAdapter(myAdapter);

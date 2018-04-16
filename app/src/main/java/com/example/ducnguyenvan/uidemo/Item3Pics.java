@@ -2,12 +2,11 @@ package com.example.ducnguyenvan.uidemo;
 
 import java.sql.Timestamp;
 
-public class Item3Pics extends Object {
+public class Item3Pics extends MyItem {
 
     private int img1;
     private int img2;
     private int img3;
-    private String title;
     private String source;
     private int comments;
     private Timestamp timestamp;

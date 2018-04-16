@@ -60,7 +60,7 @@ public class subtabTinNong extends subtab {
         });
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), layoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
-        final ArrayList<Object> listItems = new ArrayList<>();
+        final ArrayList<MyItem> listItems = new ArrayList<>();
         listItems.add(new Item1Pic(R.drawable.antimage, "Antimage from Dota2", "Dota2", 10, stringToTimestamp("2018-04-12 11:10:00.000")));
         listItems.add(new Item1Pic(R.drawable.axe, "Axe from Dota2","Dota2", 69, stringToTimestamp("2018-04-11 11:10:00.000")));
         listItems.add(new Item1Pic(R.drawable.es, "Earthshaker from Dota2", "Dota2", 0, stringToTimestamp("2018-04-12 05:10:00.000")));
@@ -90,8 +90,8 @@ public class subtabTinNong extends subtab {
 
                         //load data
                         int index = listItems.size();
-                        loadRandomata(listItems, index);
-                        myAdapter.notifyDataSetChanged();
+                        myAdapter.updateListItems(loadRandomata(listItems,index));
+                        //myAdapter.notifyDataSetChanged();
                         myAdapter.setLoaded();
                     }
                 },3000);
@@ -103,8 +103,8 @@ public class subtabTinNong extends subtab {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        refreshData(listItems);
-                        myAdapter.notifyDataSetChanged();
+                        myAdapter.updateListItems(refreshData(listItems));
+                        //myAdapter.notifyDataSetChanged();
                         swipeRefreshLayout.setRefreshing(false);
                     }
                 },3000);
@@ -112,17 +112,19 @@ public class subtabTinNong extends subtab {
         });
     }
 
-    private void refreshData(ArrayList<Object> listItems) {
+    private ArrayList<MyItem> refreshData(ArrayList<MyItem> listItems) {
         Collections.shuffle(listItems);
+        return listItems;
     }
 
-    private void loadRandomata(ArrayList<Object> listItems, int index) {
+    private ArrayList<MyItem> loadRandomata(ArrayList<MyItem> listItems, int index) {
         Random randomGen = new Random();
         int end = index + 10;
         for(int i = index; i < end; i++) {
             int itemIndex = randomGen.nextInt(listItems.size());
-            Object newItem = listItems.get(itemIndex);
+            MyItem newItem = listItems.get(itemIndex);
             listItems.add(newItem);
         }
+        return listItems;
     }
 }

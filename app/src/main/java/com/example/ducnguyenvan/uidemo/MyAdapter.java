@@ -1,9 +1,13 @@
 package com.example.ducnguyenvan.uidemo;
 
 import android.content.Context;
+import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +18,7 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -23,7 +28,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int ITEM_VIDEO = 3;
     private static final int ITEM_LABEL = 4;
     private static final int ITEM_BUTTON = 5;
-    ArrayList<Object> items;
+    ArrayList<MyItem> items;
     Context context;
 
     private int visibleThreshold = 6;
@@ -35,7 +40,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
        onLoadMoreListener = mOnLoadMoreListener;
     }
 
-    public MyAdapter(ArrayList<Object> items, Context context, RecyclerView recyclerView) {
+    public MyAdapter(ArrayList<MyItem> items, Context context, RecyclerView recyclerView) {
         this.items = items;
         this.context = context;
         final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
@@ -58,7 +63,8 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Object item = items.get(position);
+        Log.i("bind","no payloads");
+        MyItem item = items.get(position);
         if(holder instanceof Item1PicViewHolder) {
             ((Item1PicViewHolder) holder).bind((Item1Pic)item);
         }
@@ -78,6 +84,48 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             //((ItemLoadingViewHolder) holder).bind((ItemLoading)item);
             ItemLoadingViewHolder loadingViewHolder = (ItemLoadingViewHolder) holder;
             loadingViewHolder.progressBar.setIndeterminate(true);
+        }
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
+        Log.i("bind","payloads");
+        MyItem item = items.get(position);
+        if(payloads.isEmpty()) {
+            Log.i("payload", "empty");
+            if(holder instanceof Item1PicViewHolder) {
+                ((Item1PicViewHolder) holder).bind((Item1Pic)item);
+            }
+            else if(holder instanceof Item3PicsViewHolder) {
+                ((Item3PicsViewHolder) holder).bind((Item3Pics)item);
+            }
+            else if(holder instanceof ItemVideoViewHolder){
+                ((ItemVideoViewHolder) holder).bind((ItemVideo)item);
+            }
+            else if(holder instanceof ItemLabelViewHolder) {
+                ((ItemLabelViewHolder) holder).bind((ItemLabel)item);
+            }
+            else if(holder instanceof ItemButtonViewHolder){
+                ((ItemButtonViewHolder) holder).bind((ItemButton)item);
+            }
+            else {
+                //((ItemLoadingViewHolder) holder).bind((ItemLoading)item);
+                ItemLoadingViewHolder loadingViewHolder = (ItemLoadingViewHolder) holder;
+                loadingViewHolder.progressBar.setIndeterminate(true);
+            }
+        }
+        else {
+            Bundle bundle = (Bundle)payloads.get(0);
+            Log.i("bundle","get");
+            if(holder instanceof Item1PicViewHolder) {
+                ((Item1PicViewHolder) holder).bind((Item1Pic)item, bundle);
+            }
+            else if(holder instanceof Item3PicsViewHolder) {
+                ((Item3PicsViewHolder) holder).bind((Item3Pics)item, bundle);
+            }
+            else {
+                ((ItemVideoViewHolder) holder).bind((ItemVideo)item, bundle);
+            }
         }
     }
 
@@ -142,6 +190,14 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         loading = false;
     }
 
+    public void updateListItems(ArrayList<MyItem> newListItems) {
+        final ItemListDiffCallback diffCallback = new ItemListDiffCallback(this.items, newListItems);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+        //this.items.clear();
+        //this.items.addAll(newListItems);
+        diffResult.dispatchUpdatesTo(this);
+    }
+
     private static class Item1PicViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;
@@ -178,6 +234,23 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
             else {
                 cmts.setText(numOfComments + " comment(s)");
+            }
+        }
+
+        public void bind(Item1Pic item, Bundle bundle) {
+            for (String key : bundle.keySet()) {
+                if(key.equals("comments")) {
+                    int numOfComments = bundle.getInt("comments");
+                    if (numOfComments == 0) {
+                        cmts.setText("");
+                    }
+                    else {
+                        cmts.setText(numOfComments + " comment(s)");
+                    }
+                }
+                if(key.equals("img")) {
+                    img.setImageResource(bundle.getInt("img"));
+                }
             }
         }
     }
@@ -225,6 +298,28 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 cmts.setText(numOfComments + " comment(s)");
             }
         }
+        public void bind(Item3Pics item, Bundle bundle) {
+            for (String key : bundle.keySet()) {
+                if(key.equals("comments")) {
+                    int numOfComments = bundle.getInt("comments");
+                    if (numOfComments == 0) {
+                        cmts.setText("");
+                    }
+                    else {
+                        cmts.setText(numOfComments + " comment(s)");
+                    }
+                }
+                if(key.equals("img1")) {
+                    img1.setImageResource(bundle.getInt("img1"));
+                }
+                if(key.equals("img2")) {
+                    img2.setImageResource(bundle.getInt("img2"));
+                }
+                if(key.equals("img3")) {
+                    img3.setImageResource(bundle.getInt("img3"));
+                }
+            }
+        }
     }
 
     private static class ItemVideoViewHolder extends RecyclerView.ViewHolder {
@@ -266,6 +361,23 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 cmts.setText(numOfComments + " comment(s)");
             }
         }
+
+        public void bind(ItemVideo item, Bundle bundle) {
+            for (String key : bundle.keySet()) {
+                if(key.equals("comments")) {
+                    int numOfComments = bundle.getInt("comments");
+                    if (numOfComments == 0) {
+                        cmts.setText("");
+                    }
+                    else {
+                        cmts.setText(numOfComments + " comment(s)");
+                    }
+                }
+                if(key.equals("video")) {
+                    video.setVideoURI(Uri.parse(bundle.getString("video")));
+                }
+            }
+        }
     }
 
     private static class ItemLabelViewHolder extends RecyclerView.ViewHolder {
@@ -277,7 +389,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         public void bind(ItemLabel item) {
-            content.setText(item.getContent());
+            content.setText(item.getTitle());
         }
     }
 
@@ -290,7 +402,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         public void bind(ItemButton item) {
-            content.setText(item.getContent());
+            content.setText(item.getTitle());
         }
     }
 
