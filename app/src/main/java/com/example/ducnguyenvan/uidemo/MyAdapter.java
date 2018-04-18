@@ -22,6 +22,7 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private static final int NO_ITEM = -1;
     private static final int ITEM_LOADING = 0;
     private static final int ITEM_1_PIC = 1;
     private static final int ITEM_3_PICS = 2;
@@ -149,6 +150,8 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
+        if (position >= items.size())
+            return NO_ITEM;
         if (items.get(position) == null) {
             return ITEM_LOADING;
         }
@@ -194,16 +197,19 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ImageView img;
         TextView src;
         TextView cmts;
+        View divider;
         public Item1PicViewHolder(View itemView) {
             super(itemView);
             title = (TextView)itemView.findViewById(R.id.txtTitle);
             img = (ImageView)itemView.findViewById(R.id.img_view);
             img.getLayoutParams().height = picHeight;
             img.getLayoutParams().width = picWidth;
-            img.setPadding(PADDING,0,0,0);
+            //img.setPadding(PADDING,0,0,0);
             src = (TextView)itemView.findViewById(R.id.txtSource);
             cmts = (TextView)itemView.findViewById(R.id.txtComments);
+            divider = (View)itemView.findViewById(R.id.divider);
         }
+
 
         public void bind(Item1Pic item) {
             title.setText(item.getTitle());
@@ -255,21 +261,24 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ImageView img3;
         TextView src;
         TextView cmts;
+        View divider;
+
+
         public Item3PicsViewHolder(View itemView) {
             super(itemView);
             title = (TextView)itemView.findViewById(R.id.txtTitle);
             img1 = (ImageView)itemView.findViewById(R.id.img_view1);
             img1.getLayoutParams().height = picHeight;
             img1.getLayoutParams().width = picWidth;
-            img1.setPadding(PADDING,0,PADDING,0);
+            //img1.setPadding(PADDING,0,PADDING,0);
             img2 = (ImageView)itemView.findViewById(R.id.img_view2);
             img2.getLayoutParams().height = picHeight;
             img2.getLayoutParams().width = picWidth;
-            img2.setPadding(0,0,PADDING,0);
+            //img2.setPadding(0,0,PADDING,0);
             img3 = (ImageView)itemView.findViewById(R.id.img_view3);
             img3.getLayoutParams().height = picHeight;
             img3.getLayoutParams().width = picWidth;
-            img3.setPadding(0,0,PADDING, 0);
+            //img3.setPadding(0,0,PADDING, 0);
             src = (TextView)itemView.findViewById(R.id.txtSource);
             cmts = (TextView)itemView.findViewById(R.id.txtComments);
         }
@@ -415,5 +424,8 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar1);
             progressBar.getLayoutParams().height = picHeight/2;
         }
+    }
+    public MyItem getItemAt(int position) {
+        return (items != null && items.size() > position) ? items.get(position) : null;
     }
 }

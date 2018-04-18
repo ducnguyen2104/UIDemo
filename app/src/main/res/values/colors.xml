@@ -3,4 +3,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="bgItem">#efefef</color>
+
+    <color name="bgGray">#d6d2d5</color>
+
+    <color name="dividerHeader">#b5b1b4</color>
+
+    <color name="dividerImage">#7cc576</color>
+
+    <color name="dividerText">#00a99d</color>
+
+    <color name="dividerAds">#f26522</color>
 </resources>

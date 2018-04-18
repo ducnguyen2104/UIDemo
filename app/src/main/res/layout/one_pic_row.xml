@@ -11,7 +11,6 @@
         android:id="@+id/img_view"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:paddingLeft="10px"
         android:layout_marginLeft="10px"/>
 
     <TextView
@@ -47,4 +46,5 @@
         android:paddingRight="10px"
         android:text="cmts"
         android:layout_marginRight="10px"/>
+
 </RelativeLayout>

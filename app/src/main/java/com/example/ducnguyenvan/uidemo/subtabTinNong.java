@@ -3,6 +3,7 @@ package com.example.ducnguyenvan.uidemo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,11 +11,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class subtabTinNong extends subtab {
+
+    private List<RecyclerView.ItemDecoration> mItemDecorationList = new ArrayList<>();
 
     public static subtabTinNong newInstance(int position) {
         Bundle args = new Bundle();
@@ -57,8 +62,10 @@ public class subtabTinNong extends subtab {
 
             }
         });
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), layoutManager.getOrientation());
-        recyclerView.addItemDecoration(dividerItemDecoration);
+        //MyDivider myDivider = new MyDivider(recyclerView.getContext());
+        //recyclerView.addItemDecoration(myDivider);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), LinearLayout.VERTICAL);
+
         final ArrayList<MyItem> listItems = new ArrayList<>();
         listItems.add(new Item1Pic(R.drawable.antimage, "Antimage from Dota2", "Dota2", 10, stringToTimestamp("2018-04-12 11:10:00.000")));
         listItems.add(new Item1Pic(R.drawable.axe, "Axe from Dota2","Dota2", 69, stringToTimestamp("2018-04-11 11:10:00.000")));
@@ -74,6 +81,10 @@ public class subtabTinNong extends subtab {
         //listItems.add(new ItemVideo(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.test),"Today is Friday 13th...", "Kênh  14", 5, stringToTimestamp("2018-04-12 11:48:00.000")));
         final MyAdapter myAdapter = new MyAdapter(listItems, getContext(),recyclerView);
         recyclerView.setAdapter(myAdapter);
+        addBtnDivider();
+        addLabelDivider();
+        addRestDivider();
+        showItemDecoration(recyclerView);
         myAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
@@ -135,5 +146,32 @@ public class subtabTinNong extends subtab {
             listItems.add(newItem);
         }
         return listItems;
+    }
+
+    private void addBtnDivider() {
+        mItemDecorationList.add(new MyDivider(ContextCompat.getDrawable(this.getContext(),R.drawable.divider_large),0, new MyItemDecorationCallback(ItemButton.class)));
+    }
+
+    private void addLabelDivider() {
+        mItemDecorationList.add(new MyDivider(ContextCompat.getDrawable(this.getContext(),R.drawable.divider_large),0, new MyItemDecorationCallback(){
+            @Override
+            public boolean shouldDecor(MyItem item, @Nullable MyItem nextItem) {
+                return (nextItem != null && nextItem instanceof ItemLabel);
+            }
+        }));
+    }
+
+    private void addRestDivider() {
+        mItemDecorationList.add(new MyDivider(ContextCompat.getDrawable(this.getContext(), R.drawable.divider_medium),0,new MyItemDecorationCallback(){
+            @Override
+            public boolean shouldDecor(MyItem item, @Nullable MyItem nextItem) {
+                return (nextItem != null && !nextItem.getClass().isAssignableFrom(ItemLabel.class)&& !item.getClass().isAssignableFrom(ItemLabel.class) && !item.getClass().isAssignableFrom(ItemButton.class) && !item.getClass().isAssignableFrom(ItemLoading.class));
+            }
+        }));
+    }
+    private void showItemDecoration(RecyclerView recyclerView) {
+        for (RecyclerView.ItemDecoration itemDecoration : mItemDecorationList) {
+            recyclerView.addItemDecoration(itemDecoration);
+        }
     }
 }
