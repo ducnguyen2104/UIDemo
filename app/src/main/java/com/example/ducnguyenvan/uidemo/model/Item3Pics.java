@@ -1,4 +1,4 @@
-package com.example.ducnguyenvan.uidemo;
+package com.example.ducnguyenvan.uidemo.model;
 
 import java.sql.Timestamp;
 

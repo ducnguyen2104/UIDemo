@@ -1,4 +1,4 @@
-package com.example.ducnguyenvan.uidemo;
+package com.example.ducnguyenvan.uidemo.decoration;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -6,6 +6,9 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import com.example.ducnguyenvan.uidemo.MyAdapter;
+import com.example.ducnguyenvan.uidemo.model.MyItem;
 
 public class MyDivider extends RecyclerView.ItemDecoration {
 

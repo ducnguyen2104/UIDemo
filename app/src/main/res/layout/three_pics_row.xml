@@ -71,7 +71,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/img_view2"
-        android:paddingRight="10px"
         android:paddingTop="10px"
         android:text="cmts"
         android:layout_marginRight="10px"/>

@@ -5,6 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.util.DiffUtil;
 import android.util.Log;
 
+import com.example.ducnguyenvan.uidemo.model.Item1Pic;
+import com.example.ducnguyenvan.uidemo.model.Item3Pics;
+import com.example.ducnguyenvan.uidemo.model.ItemVideo;
+import com.example.ducnguyenvan.uidemo.model.MyItem;
+
 import java.util.ArrayList;
 
 public class ItemListDiffCallback extends DiffUtil.Callback {

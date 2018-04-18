@@ -1,4 +1,4 @@
-package com.example.ducnguyenvan.uidemo;
+package com.example.ducnguyenvan.uidemo.model;
 
 public class ItemLabel extends MyItem {
 

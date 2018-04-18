@@ -10,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ducnguyenvan.uidemo.model.ItemVideo;
+import com.example.ducnguyenvan.uidemo.model.MyItem;
+
 import java.util.ArrayList;
 
 public class subtabMoi extends subtab {

@@ -1,5 +1,6 @@
 package com.example.ducnguyenvan.uidemo;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -13,11 +14,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.example.ducnguyenvan.uidemo.decoration.MyDivider;
+import com.example.ducnguyenvan.uidemo.decoration.MyItemDecorationCallback;
+import com.example.ducnguyenvan.uidemo.model.Item1Pic;
+import com.example.ducnguyenvan.uidemo.model.Item3Pics;
+import com.example.ducnguyenvan.uidemo.model.ItemButton;
+import com.example.ducnguyenvan.uidemo.model.ItemLabel;
+import com.example.ducnguyenvan.uidemo.model.ItemLoading;
+import com.example.ducnguyenvan.uidemo.model.MyItem;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class subtabTinNong extends subtab {
+    private static class MyLinearLayoutManager extends LinearLayoutManager {
+        @Override
+        public boolean supportsPredictiveItemAnimations() {
+            return false;
+        }
+
+        public MyLinearLayoutManager(Context context, int orientation, Boolean rev) {
+            super(context,orientation,rev);
+        }
+    }
 
     private List<RecyclerView.ItemDecoration> mItemDecorationList = new ArrayList<>();
 
@@ -53,7 +73,7 @@ public class subtabTinNong extends subtab {
         final RecyclerView recyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view);
         final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout)rootView.findViewById(R.id.swipe_refresh_layout);
         //recyclerView.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -162,7 +182,7 @@ public class subtabTinNong extends subtab {
     }
 
     private void addRestDivider() {
-        mItemDecorationList.add(new MyDivider(ContextCompat.getDrawable(this.getContext(), R.drawable.divider_medium),0,new MyItemDecorationCallback(){
+        mItemDecorationList.add(new MyDivider(ContextCompat.getDrawable(this.getContext(), R.drawable.divider_medium),10,new MyItemDecorationCallback(){
             @Override
             public boolean shouldDecor(MyItem item, @Nullable MyItem nextItem) {
                 return (nextItem != null && !nextItem.getClass().isAssignableFrom(ItemLabel.class)&& !item.getClass().isAssignableFrom(ItemLabel.class) && !item.getClass().isAssignableFrom(ItemButton.class) && !item.getClass().isAssignableFrom(ItemLoading.class));

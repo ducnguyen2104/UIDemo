@@ -1,6 +1,8 @@
-package com.example.ducnguyenvan.uidemo;
+package com.example.ducnguyenvan.uidemo.decoration;
 
 import android.support.annotation.Nullable;
+
+import com.example.ducnguyenvan.uidemo.model.MyItem;
 
 public class MyItemDecorationCallback implements ItemDecorationCallback {
     private Class<? extends MyItem>[] mClasses;

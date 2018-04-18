@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.VideoView;
+
+import com.example.ducnguyenvan.uidemo.model.Item1Pic;
+import com.example.ducnguyenvan.uidemo.model.Item3Pics;
+import com.example.ducnguyenvan.uidemo.model.ItemButton;
+import com.example.ducnguyenvan.uidemo.model.ItemLabel;
+import com.example.ducnguyenvan.uidemo.model.ItemVideo;
+import com.example.ducnguyenvan.uidemo.model.MyItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +77,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        Log.i("bind","no payloads");
+        //Log.i("bind","no payloads");
 
         MyItem item = items.get(position);
         if(holder instanceof Item1PicViewHolder) {
@@ -98,14 +104,14 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
-        Log.i("bind","screen: " + MainActivity.scrWidth + ", img: " + picWidth );
+        //Log.i("bind","screen: " + MainActivity.scrWidth + ", img: " + picWidth );
         MyItem item = items.get(position);
         if(payloads.isEmpty()) {
             onBindViewHolder(holder,position);
         }
         else {
             Bundle bundle = (Bundle)payloads.get(0);
-            Log.i("bundle","get");
+            //Log.i("bundle","get");
             if(holder instanceof Item1PicViewHolder) {
                 ((Item1PicViewHolder) holder).bind((Item1Pic)item, bundle);
             }
@@ -184,7 +190,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void updateListItems(ArrayList<MyItem> newListItems) {
         final ItemListDiffCallback diffCallback = new ItemListDiffCallback(this.items, newListItems);
         final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
-        Log.i("thread", "" + Thread.currentThread().getName());
+        //Log.i("thread", "" + Thread.currentThread().getName());
         if (this.items != newListItems) {
             this.items.clear();
             this.items.addAll(newListItems);
@@ -426,6 +432,10 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
     public MyItem getItemAt(int position) {
-        return (items != null && items.size() > position) ? items.get(position) : null;
+        if (position >= 0 && position < items.size()) {
+            //Log.i("get item", "at " + position);
+            return (items != null && items.size() > position) ? items.get(position) : null;
+        }
+        else return null;
     }
 }
