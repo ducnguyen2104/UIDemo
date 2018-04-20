@@ -10,6 +10,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 
+import com.example.ducnguyenvan.uidemo.tabs.tabCaNhan;
+import com.example.ducnguyenvan.uidemo.tabs.tabTinTuc;
+import com.example.ducnguyenvan.uidemo.tabs.tabVideo;
+import com.example.ducnguyenvan.uidemo.tabs.tabXuHuong;
+
 public class MainActivity extends AppCompatActivity {
 
     public static int scrWidth;

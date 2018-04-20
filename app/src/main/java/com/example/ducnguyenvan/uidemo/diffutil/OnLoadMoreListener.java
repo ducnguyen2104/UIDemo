@@ -1,4 +1,4 @@
-package com.example.ducnguyenvan.uidemo;
+package com.example.ducnguyenvan.uidemo.diffutil;
 
 public interface OnLoadMoreListener {
     void onLoadMore();

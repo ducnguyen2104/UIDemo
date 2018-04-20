@@ -1,4 +1,4 @@
-package com.example.ducnguyenvan.uidemo;
+package com.example.ducnguyenvan.uidemo.diffutil;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

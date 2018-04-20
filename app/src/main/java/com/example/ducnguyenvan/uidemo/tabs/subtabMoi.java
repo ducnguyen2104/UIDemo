@@ -1,6 +1,5 @@
-package com.example.ducnguyenvan.uidemo;
+package com.example.ducnguyenvan.uidemo.tabs;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
@@ -10,7 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ducnguyenvan.uidemo.model.ItemVideo;
+import com.example.ducnguyenvan.uidemo.MyAdapter;
+import com.example.ducnguyenvan.uidemo.R;
 import com.example.ducnguyenvan.uidemo.model.MyItem;
 
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class subtabMoi extends subtab {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), layoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
         ArrayList<MyItem> listItems = new ArrayList<>();
-        listItems.add(new ItemVideo(Uri.parse("android.resource://"+getContext().getPackageName()+"/"+R.raw.test),"Today is Friday 13th...", "Kênh  14", 5, stringToTimestamp("2018-04-12 11:48:00.000")));
+        //listItems.add(new ItemVideo(Uri.parse("android.resource://"+getContext().getPackageName()+"/"+R.raw.test),"Today is Friday 13th...", "Kênh  14", 5, stringToTimestamp("2018-04-12 11:48:00.000")));
         MyAdapter myAdapter = new MyAdapter(listItems, getContext(),recyclerView);
         recyclerView.setAdapter(myAdapter);
     }

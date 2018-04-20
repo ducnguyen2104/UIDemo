@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.ducnguyenvan.uidemo.layouts.Layout3Pics
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingBottom="10px"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="10px">
-
+    android:layout_marginTop="12px"
+    android:layout_marginBottom="12px"
+    android:layout_marginLeft="10px"
+    android:layout_marginRight="10px"
+    android:id="@+id/three_pics_layout">
 
     <ImageView
         android:id="@+id/img_view1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/txtTitle"
-
         android:layout_marginLeft="10px"
         android:layout_marginRight="10px"
         android:src="@mipmap/ic_launcher" />
@@ -24,8 +21,6 @@
         android:id="@+id/img_view2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/img_view1"
-        android:layout_toEndOf="@+id/img_view1"
         android:layout_marginRight="10px"
         android:src="@mipmap/ic_launcher" />
 
@@ -33,32 +28,26 @@
         android:id="@+id/img_view3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/img_view1"
-        android:layout_toEndOf="@+id/img_view2"
         android:layout_marginRight="10px"
         android:src="@mipmap/ic_launcher" />
 
 
     <TextView
         android:id="@+id/txtTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:paddingBottom="10px"
-        android:paddingLeft="10px"
-        android:paddingTop="10px"
         android:text="ahihi"
         android:textSize="25dp"
         android:textStyle="bold"
-        android:layout_marginLeft="10px"/>
+        android:layout_marginLeft="10px"
+        android:maxLines="2"
+        android:ellipsize="end"/>
 
     <TextView
         android:id="@+id/txtSource"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/img_view2"
         android:paddingLeft="10px"
         android:paddingTop="10px"
         android:text="source"
@@ -69,10 +58,9 @@
         android:id="@+id/txtComments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/img_view2"
         android:paddingTop="10px"
         android:text="cmts"
         android:layout_marginRight="10px"/>
 
-</RelativeLayout>
+
+</com.example.ducnguyenvan.uidemo.layouts.Layout3Pics>

@@ -16,6 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.example.ducnguyenvan.uidemo.diffutil.ItemListDiffCallback;
+import com.example.ducnguyenvan.uidemo.diffutil.OnLoadMoreListener;
 import com.example.ducnguyenvan.uidemo.model.Item1Pic;
 import com.example.ducnguyenvan.uidemo.model.Item3Pics;
 import com.example.ducnguyenvan.uidemo.model.ItemButton;
@@ -104,12 +106,13 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
-        //Log.i("bind","screen: " + MainActivity.scrWidth + ", img: " + picWidth );
         MyItem item = items.get(position);
         if(payloads.isEmpty()) {
+            //Log.i("bind", "no change");
             onBindViewHolder(holder,position);
         }
         else {
+            //Log.i("bind", "change");
             Bundle bundle = (Bundle)payloads.get(0);
             //Log.i("bundle","get");
             if(holder instanceof Item1PicViewHolder) {
@@ -203,7 +206,6 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ImageView img;
         TextView src;
         TextView cmts;
-        View divider;
         public Item1PicViewHolder(View itemView) {
             super(itemView);
             title = (TextView)itemView.findViewById(R.id.txtTitle);
@@ -212,12 +214,13 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             img.getLayoutParams().width = picWidth;
             //img.setPadding(PADDING,0,0,0);
             src = (TextView)itemView.findViewById(R.id.txtSource);
+            //src.setPaddingRelative(0,0, 0, R.id.img_view);
             cmts = (TextView)itemView.findViewById(R.id.txtComments);
-            divider = (View)itemView.findViewById(R.id.divider);
         }
 
 
         public void bind(Item1Pic item) {
+            //Log.i("bind", "...");
             title.setText(item.getTitle());
             img.setImageResource(item.getImg());
             long time = System.currentTimeMillis() - item.getTimestamp().getTime();
@@ -267,8 +270,6 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ImageView img3;
         TextView src;
         TextView cmts;
-        View divider;
-
 
         public Item3PicsViewHolder(View itemView) {
             super(itemView);

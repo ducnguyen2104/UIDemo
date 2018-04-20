@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<com.example.ducnguyenvan.uidemo.layouts.Layout1Pic
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="10px"
-    android:paddingTop="10px">
+    android:layout_marginTop="12px"
+    android:layout_marginBottom="12px"
+    android:layout_marginLeft="10px"
+    android:layout_marginRight="10px"
+    android:id="@+id/one_pic_layout">
+
     <ImageView
         android:src="@mipmap/ic_launcher"
         android:id="@+id/img_view"
@@ -15,25 +18,25 @@
 
     <TextView
         android:id="@+id/txtTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/img_view"
-        android:layout_toEndOf="@+id/img_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10px"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:paddingBottom="10px"
         android:paddingLeft="10px"
         android:paddingTop="10px"
         android:text="ahihi"
         android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_marginLeft="10px"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtSource"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/img_view"
-        android:layout_toEndOf="@+id/img_view"
         android:paddingLeft="10px"
         android:text="source"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="10px"/>
 
 
@@ -41,9 +44,7 @@
         android:id="@+id/txtComments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/img_view"
-        android:layout_alignParentEnd="true"
         android:text="cmts"
         android:layout_marginRight="10px"/>
 
-</RelativeLayout>
+</com.example.ducnguyenvan.uidemo.layouts.Layout1Pic>

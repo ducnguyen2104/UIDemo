@@ -1,4 +1,4 @@
-package com.example.ducnguyenvan.uidemo;
+package com.example.ducnguyenvan.uidemo.tabs;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,18 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class tabTinTuc extends Fragment{
+import com.example.ducnguyenvan.uidemo.R;
 
-    public static tabTinTuc newInstance() {
-        tabTinTuc fragment = new tabTinTuc();
+public class tabVideo extends Fragment{
+    public static tabVideo newInstance() {
+        tabVideo fragment = new tabVideo();
         return fragment;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.tintuc, container,  false);
+        View rootView = inflater.inflate(R.layout.video, container,  false);
         ViewPager mViewPager = (ViewPager) rootView.findViewById(R.id.container_main);
-        SectionsPagerAdapter mSectionPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
+        tabVideo.SectionsPagerAdapter mSectionPagerAdapter = new tabVideo.SectionsPagerAdapter(getChildFragmentManager());
         mViewPager.setAdapter(mSectionPagerAdapter);
         return rootView;
     }
@@ -33,13 +34,14 @@ public class tabTinTuc extends Fragment{
 
         @Override
         public Fragment getItem(int position) {
+            //+.i("subtab position", ""+ position);
             switch (position) {
                 case 0:
-                    return subtabTinNong.newInstance(1);
+                    return subtabMoi.newInstance(1);
                 case 1:
-                    return subtabTinMoi.newInstance(2);
+                    return subtabAhihi.newInstance(2);
                 case 2:
-                    return subtabBongDaVN.newInstance(3);
+                    return subtabOMG.newInstance(3);
                 default:
                     return null;
             }
@@ -52,13 +54,14 @@ public class tabTinTuc extends Fragment{
 
         @Override
         public CharSequence getPageTitle(int position) {
+            //Log.i("subtab title", ""+position);
             switch (position) {
                 case 0:
-                    return "Tin nóng";
+                    return "Mới";
                 case 1:
-                    return "Tin mới";
+                    return "Ahihi";
                 case 2:
-                    return "Bóng dá VN";
+                    return "OMG";
 
             }
             return null;

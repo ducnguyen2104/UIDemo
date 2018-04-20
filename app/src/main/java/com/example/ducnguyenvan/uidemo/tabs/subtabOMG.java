@@ -1,4 +1,4 @@
-package com.example.ducnguyenvan.uidemo;
+package com.example.ducnguyenvan.uidemo.tabs;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,18 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class subtabBongDaVN extends subtab {
+import com.example.ducnguyenvan.uidemo.R;
 
-    public static subtabBongDaVN newInstance(int position) {
+public class subtabOMG extends subtab {
+    public static subtabOMG newInstance(int position) {
         Bundle args = new Bundle();
-        subtabBongDaVN fragment = new subtabBongDaVN();
-
+        subtabOMG fragment = new subtabOMG();
         args.putInt("position",position);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public subtabBongDaVN() {
+    public subtabOMG() {
 
     }
 
@@ -28,7 +28,7 @@ public class subtabBongDaVN extends subtab {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.bongda, container, false);
+        View rootView = inflater.inflate(R.layout.omg, container, false);
         return rootView;
     }
 }

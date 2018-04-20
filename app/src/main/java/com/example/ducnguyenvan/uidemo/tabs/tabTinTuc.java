@@ -1,26 +1,28 @@
-package com.example.ducnguyenvan.uidemo;
+package com.example.ducnguyenvan.uidemo.tabs;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class tabVideo extends Fragment{
-    public static tabVideo newInstance() {
-        tabVideo fragment = new tabVideo();
+import com.example.ducnguyenvan.uidemo.R;
+
+public class tabTinTuc extends Fragment{
+
+    public static tabTinTuc newInstance() {
+        tabTinTuc fragment = new tabTinTuc();
         return fragment;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.video, container,  false);
+        View rootView = inflater.inflate(R.layout.tintuc, container,  false);
         ViewPager mViewPager = (ViewPager) rootView.findViewById(R.id.container_main);
-        tabVideo.SectionsPagerAdapter mSectionPagerAdapter = new tabVideo.SectionsPagerAdapter(getChildFragmentManager());
+        SectionsPagerAdapter mSectionPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
         mViewPager.setAdapter(mSectionPagerAdapter);
         return rootView;
     }
@@ -33,14 +35,13 @@ public class tabVideo extends Fragment{
 
         @Override
         public Fragment getItem(int position) {
-            Log.i("subtab position", ""+ position);
             switch (position) {
                 case 0:
-                    return subtabMoi.newInstance(1);
+                    return subtabTinNong.newInstance(1);
                 case 1:
-                    return subtabAhihi.newInstance(2);
+                    return subtabTinMoi.newInstance(2);
                 case 2:
-                    return subtabOMG.newInstance(3);
+                    return subtabBongDaVN.newInstance(3);
                 default:
                     return null;
             }
@@ -53,14 +54,13 @@ public class tabVideo extends Fragment{
 
         @Override
         public CharSequence getPageTitle(int position) {
-            Log.i("subtab title", ""+position);
             switch (position) {
                 case 0:
-                    return "Mới";
+                    return "Tin nóng";
                 case 1:
-                    return "Ahihi";
+                    return "Tin mới";
                 case 2:
-                    return "OMG";
+                    return "Bóng dá VN";
 
             }
             return null;
